@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("application")
 }
 
 group = "moe.das"
@@ -14,4 +15,15 @@ dependencies {
     implementation("org.commonmark:commonmark:0.21.0")
     implementation("org.commonmark:commonmark-ext-yaml-front-matter:0.21.0")
     implementation("org.slf4j:slf4j-simple:2.0.10")
+}
+
+application {
+    mainClass.set("moe.das.blog.Main")
+}
+
+
+tasks {
+    compileJava {
+        options.encoding = "UTF-8"
+    }
 }
