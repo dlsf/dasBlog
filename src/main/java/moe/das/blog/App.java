@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -36,7 +38,7 @@ public class App {
 
         // Generate and serve the home screen
         var homeScreenBody = generateHomeScreen(blogPosts);
-        var homeTemplate = Files.readString(Path.of(getClass().getClassLoader().getResource("home.html").toURI()));
+        var homeTemplate = new String(getClass().getClassLoader().getResourceAsStream("home_template.html").readAllBytes());
         javalin = javalin.get("/", ctx -> ctx.html(homeTemplate.replace("%BODY%", homeScreenBody)));
 
         // Start server
@@ -52,7 +54,7 @@ public class App {
      * @throws URISyntaxException never thrown
      */
     private List<BlogPost> initializePostPages(Javalin javalin) throws IOException, URISyntaxException {
-        var postTemplate = Files.readString(Path.of(getClass().getClassLoader().getResource("post_template.html").toURI()));
+        var postTemplate = new String(getClass().getClassLoader().getResourceAsStream("post_template.html").readAllBytes());
         var markdownParser = Parser.builder().extensions(Constants.EXTENSIONS).build();
         var htmlRenderer = HtmlRenderer.builder()
                 .attributeProviderFactory(attributeProviderContext -> new HeadingAttributeProvider())
@@ -60,7 +62,6 @@ public class App {
                 .build();
 
         var paths = new ArrayList<BlogPost>();
-        System.out.println(Path.of("posts/").toAbsolutePath());
         for (var file : Files.walk(Path.of("posts/")).toList()) {
             var postOptional = BlogPost.fromFile(file, markdownParser);
             if (postOptional.isEmpty()) continue;
