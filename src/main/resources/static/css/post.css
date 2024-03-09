@@ -7,6 +7,13 @@
 
 #metadata {
     text-align: right;
+    display: inline-block;
+    align-self: flex-end;
+}
+
+#title {
+    display: inline-block;
+    align-self: flex-end;
 }
 
 hr {
@@ -18,6 +25,7 @@ hr {
     margin-top: -10px;
 }
 
+/*TODO: Improve*/
 code {
     border: 1px solid #909898;
     border-radius: 10px;
