@@ -1,0 +1,25 @@
+@import "highlight.min.css";
+
+#post-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#metadata {
+    text-align: right;
+}
+
+hr {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#title-hr {
+    margin-top: -10px;
+}
+
+code {
+    border: 1px solid #909898;
+    border-radius: 10px;
+    background-color: #9d1212;
+}

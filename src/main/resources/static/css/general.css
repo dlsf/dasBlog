@@ -1,0 +1,62 @@
+@import "font.css";
+
+@media (orientation: landscape) {
+    body {
+        padding-left: 25%;
+        padding-right: 25%;
+        padding-bottom: 5%;
+    }
+}
+
+@media (orientation: portrait) {
+    body {
+        padding: 5%;
+    }
+}
+
+a {
+    color: #8f062b;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f3f3f3;
+}
+
+hr {
+    color: #909898;
+}
+
+#footer-hr {
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+footer {
+    text-align: center;
+    font-size: 15px;
+}
+
+#site-header {
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#site-name {
+    font-size: 25px;
+    padding-left: 0px;
+    padding-right: 10%;
+
+    position: relative;
+    top: 3px;
+    font-family: "JetBrainsMono-SemiBold", Arial, monospace;
+}
+
+.navbar {
+    font-size: 18px;
+    padding-right: 30px;
+}

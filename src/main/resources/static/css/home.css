@@ -1,0 +1,28 @@
+table {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 7%;
+    padding-bottom: 7%;
+}
+
+table tr + tr {
+    border-left: 1px solid black;
+}
+
+th {
+    padding: 10px;
+}
+
+.table-header {
+    border-bottom: 1px solid black;
+}
+
+/* Hack to switch rows and columns in index table */
+tr {
+    display: block;
+    float: left;
+}
+
+th, td {
+    display: block;
+}
