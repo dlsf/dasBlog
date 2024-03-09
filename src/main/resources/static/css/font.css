@@ -1,0 +1,19 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: "JetBrainsMono-SemiBold", Arial, monospace;
+}
+
+body {
+    color: #033740FF;
+    font-family: "JetBrainsMono-Light", Arial, monospace;
+}
+
+@font-face {
+    font-family: "JetBrainsMono-Light";
+    src: url("../font/JetBrainsMono-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "JetBrainsMono-SemiBold";
+    src: url("../font/JetBrainsMono-SemiBold.ttf") format("truetype");
+}
+

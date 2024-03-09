@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>%TITLE%</title>
+        <meta content="%TITLE%" property="og:title" />
+        <meta content="%DESCRIPTION%" property="og:description" />
+        <meta content="%URL%" property="og:url" />
+
+        <link rel="icon" type="image/x-icon" href="/static/image/favicon.ico">
+        <link rel="stylesheet" href="/static/css/general.css">
+        <link rel="stylesheet" href="/static/css/post.css">
+        <script src="/static/js/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    </head>
+    <body>
+        <div id="site-header">
+            <img src="/static/image/logo.png" height="30" width="30" alt="d"/>
+            <p id="site-name" style="align-self: end">asBlog</p>
+            <p class="navbar"><a href="/">Home</a></p>
+            <p class="navbar"><a href="/about">About</a></p>
+        </div>
+
+        <div id="post-header">
+            <h1 id="title">%TITLE%</h1>
+            <p id="metadata">%DATE%<br>
+                by %AUTHOR%
+            </p>
+        </div>
+
+        <hr id="title-hr" />
+
+        %BODY_TEXT%
+
+        <br>
+        <hr id="footer-hr" />
+
+        <footer>&copy; 2024 Daniel Scherf | <a href="/about">About</a> | <a href="https://github.com/dlsf/dasBlog">Source Code</a></footer>
+    </body>
+</html>
