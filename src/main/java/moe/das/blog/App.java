@@ -60,6 +60,7 @@ public class App {
                 .build();
 
         var paths = new ArrayList<BlogPost>();
+        System.out.println(Path.of("posts/").toAbsolutePath());
         for (var file : Files.walk(Path.of("posts/")).toList()) {
             var postOptional = BlogPost.fromFile(file, markdownParser);
             if (postOptional.isEmpty()) continue;
