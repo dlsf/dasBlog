@@ -33,7 +33,6 @@ public class App {
         }));
 
         var blogPosts = initializePostPages(javalin);
-        System.out.println(blogPosts);
 
         // Generate and serve the home screen
         var homeScreenBody = generateHomeScreen(blogPosts);

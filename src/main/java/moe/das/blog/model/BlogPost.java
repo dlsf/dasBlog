@@ -162,12 +162,4 @@ public class BlogPost {
     public String getHtmlLink() {
         return "<a href=\"/" + path +"\">" + title + "</a>";
     }
-
-    @Override
-    public String toString() {
-        return "BlogPost{" +
-                "title='" + title + '\'' +
-                ", excludeFromHome=" + excludeFromHome +
-                '}';
-    }
 }
