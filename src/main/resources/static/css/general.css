@@ -6,6 +6,10 @@
         padding-right: 25%;
         padding-bottom: 5%;
     }
+
+    p, ol, ul, table {
+        font-size: 125%;
+    }
 }
 
 @media (orientation: portrait) {
@@ -48,15 +52,14 @@ footer {
 
 #site-name {
     font-size: 25px;
-    padding-left: 0px;
+    padding-left: 5px;
     padding-right: 10%;
 
     position: relative;
-    top: 3px;
     font-family: "JetBrainsMono-SemiBold", Arial, monospace;
 }
 
 .navbar {
-    font-size: 18px;
+    font-size: 20px;
     padding-right: 30px;
 }
