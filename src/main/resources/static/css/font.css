@@ -17,3 +17,7 @@ body {
     src: url("../font/JetBrainsMono-SemiBold.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "JetBrainsMono-ExtraBold";
+    src: url("../font/JetBrainsMono-ExtraBold.ttf") format("truetype");
+}
