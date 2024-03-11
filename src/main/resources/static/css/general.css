@@ -54,6 +54,8 @@ footer {
     font-size: 25px;
     padding-left: 5px;
     padding-right: 10%;
+    align-self: end;
+    padding-top: 4px;
 
     position: relative;
     font-family: "JetBrainsMono-SemiBold", Arial, monospace;
