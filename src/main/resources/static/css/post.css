@@ -7,13 +7,13 @@
 
 #metadata {
     text-align: right;
-    display: inline-block;
-    align-self: flex-end;
+    align-self: center;
+    margin-bottom: 15px;
 }
 
 #title {
-    display: inline-block;
-    align-self: flex-end;
+    align-self: center;
+    margin-bottom: 15px;
 }
 
 hr {
