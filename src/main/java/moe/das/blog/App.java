@@ -10,7 +10,6 @@ import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -25,10 +24,9 @@ public class App {
     /**
      * Sets up the entire website and starts the web server on port 7070.
      *
-     * @throws URISyntaxException never thrown
      * @throws IOException only thrown during startup when files are missing
      */
-    public void run() throws URISyntaxException, IOException {
+    public void run() throws IOException {
         var javalin = Javalin.create(config -> config.staticFiles.add(staticFiles -> {
             staticFiles.hostedPath = "/static";
             staticFiles.directory = "/static";
@@ -51,9 +49,8 @@ public class App {
      * @param javalin the Javalin instance
      * @return a list of all successfully configured blog posts
      * @throws IOException only thrown during startup when files are missing
-     * @throws URISyntaxException never thrown
      */
-    private List<BlogPost> initializePostPages(Javalin javalin) throws IOException, URISyntaxException {
+    private List<BlogPost> initializePostPages(Javalin javalin) throws IOException {
         var postTemplate = new String(getClass().getClassLoader().getResourceAsStream("post_template.html").readAllBytes());
         var markdownParser = Parser.builder().extensions(Constants.EXTENSIONS).build();
         var htmlRenderer = HtmlRenderer.builder()
