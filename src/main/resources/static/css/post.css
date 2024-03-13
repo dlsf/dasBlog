@@ -25,11 +25,15 @@ hr {
     margin-top: -10px;
 }
 
-/*TODO: Improve*/
-code {
-    border: 1px solid #909898;
+img {
+    margin: auto;
+    display: block;
+}
+
+pre > code {
+    border: 2px solid #909898;
     border-radius: 10px;
-    background-color: #9d1212;
+    font-size: 1.2em;
 }
 
 :target {
