@@ -31,3 +31,18 @@ code {
     border-radius: 10px;
     background-color: #9d1212;
 }
+
+:target {
+    border-radius: 5px;
+    animation: highlight 1750ms ease-out;
+}
+
+@keyframes highlight {
+    25%, 60% {
+        background-color: rgba(157, 18, 18, 0.2);
+    }
+
+    100% {
+        background-color: #f3f3f3;
+    }
+}
