@@ -10,4 +10,4 @@ Please refer to the example [about page](posts/about.md) for details.
 
 ## Running the site
 
-You can host the machine locally via [docker-compose](docker-compose.yml).
+You can host the website locally via [docker-compose](docker-compose.yml).
