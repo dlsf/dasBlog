@@ -1,12 +1,14 @@
 package moe.das.blog.renderer.home;
 
+import moe.das.blog.renderer.HtmlRenderer;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents an HTML table with its columns.
  */
-public class Table {
+public class Table implements HtmlRenderer {
     private final List<Column> columns;
 
     /**
@@ -25,18 +27,13 @@ public class Table {
         columns.add(column);
     }
 
-    /**
-     * The full HTML table which this object represents.
-     *
-     * @return the HTML table
-     */
     @Override
-    public String toString() {
+    public String toHtml() {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("<table id=\"index\">");
 
         for (Column column : columns) {
-            stringBuilder.append(column);
+            stringBuilder.append(column.toHtml());
         }
 
         stringBuilder.append("</table>");

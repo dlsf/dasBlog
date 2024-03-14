@@ -4,6 +4,7 @@ import io.javalin.Javalin;
 import moe.das.blog.renderer.home.Column;
 import moe.das.blog.renderer.home.Table;
 import moe.das.blog.model.BlogPost;
+import moe.das.blog.renderer.post.BlogPostRenderer;
 import moe.das.blog.renderer.post.HeadingAttributeProvider;
 import moe.das.blog.utils.Constants;
 import org.commonmark.parser.Parser;
@@ -64,7 +65,8 @@ public class App {
             if (postOptional.isEmpty()) continue;
 
             var post = postOptional.get();
-            var html = post.getHtml(postTemplate, htmlRenderer);
+            var postRenderer = new BlogPostRenderer(post, postTemplate, htmlRenderer);
+            var html = postRenderer.toHtml();
 
             javalin = javalin.get("/" + post.getPath(), ctx -> ctx.html(html));
             paths.add(post);
@@ -93,6 +95,6 @@ public class App {
             table.addColumn(column);
         }
 
-        return table.toString();
+        return table.toHtml();
     }
 }

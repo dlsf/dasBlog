@@ -1,11 +1,13 @@
 package moe.das.blog.renderer.post;
 
+import moe.das.blog.renderer.HtmlRenderer;
+
 import java.util.List;
 
 /**
  * Converts a list of blog post tags to their HTML representation.
  */
-public class TagRenderer {
+public class TagRenderer implements HtmlRenderer {
     private final List<String> tags;
 
     /**
@@ -17,11 +19,7 @@ public class TagRenderer {
         this.tags = tags;
     }
 
-    /**
-     * Converts a list of blog post tags to their HTML representation.
-     *
-     * @return a HTML string representing the tag list
-     */
+    @Override
     public String toHtml() {
         if (tags.isEmpty()) return "";
 
