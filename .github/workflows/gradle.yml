@@ -20,12 +20,9 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
 
     - name: Build with Gradle Wrapper
-      run: ./gradlew build
+      run: ./gradlew installDist --no-daemon
       
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -35,9 +32,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-      
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
