@@ -82,7 +82,7 @@ public class App {
      */
     private String generateHomeScreen(List<BlogPost> blogPosts) {
         var categoryPosts = blogPosts.stream().filter(post -> !post.excludeFromHome()).collect(Collectors.groupingBy(BlogPost::getCategory));
-        if (categoryPosts.isEmpty()) return "<br><center><h3>No Available Pages!</h3></center>";
+        if (categoryPosts.isEmpty()) return Constants.NO_POSTS_PLACEHOLDER;
 
         var table = new Table();
         for (Map.Entry<String, List<BlogPost>> entry : categoryPosts.entrySet()) {
