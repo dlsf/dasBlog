@@ -5,6 +5,8 @@ description: ""          # Only used in embeds
 author: Daniel Scherf
 date: ""
 exclude-from-home: true  # Optional
+#tags: 
+# - test1
 ---
 
 dasBlog is a blog about all kinds of topics, although the primary focus is probably going to be technology.

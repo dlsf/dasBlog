@@ -1,10 +1,10 @@
 package moe.das.blog;
 
 import io.javalin.Javalin;
-import moe.das.blog.home.Column;
-import moe.das.blog.home.Table;
+import moe.das.blog.renderer.home.Column;
+import moe.das.blog.renderer.home.Table;
 import moe.das.blog.model.BlogPost;
-import moe.das.blog.renderer.HeadingAttributeProvider;
+import moe.das.blog.renderer.post.HeadingAttributeProvider;
 import moe.das.blog.utils.Constants;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;

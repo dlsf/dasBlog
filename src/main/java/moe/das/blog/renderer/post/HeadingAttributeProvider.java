@@ -1,4 +1,4 @@
-package moe.das.blog.renderer;
+package moe.das.blog.renderer.post;
 
 import moe.das.blog.utils.Sanitizer;
 import org.commonmark.node.Heading;

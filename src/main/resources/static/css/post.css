@@ -16,13 +16,26 @@
     margin-bottom: 15px;
 }
 
+#title-hr {
+    margin-top: -10px;
+}
+
+#tags {
+    display: flex;
+    padding-top: 1em;
+}
+
+.tag {
+    padding: 0 5px;
+    margin-right: 10px;
+    border: #8f062b solid 1px;
+    border-radius: 10px;
+    background-color: rgba(157, 18, 18, 0.1);
+}
+
 hr {
     margin-top: 25px;
     margin-bottom: 25px;
-}
-
-#title-hr {
-    margin-top: -10px;
 }
 
 img {
