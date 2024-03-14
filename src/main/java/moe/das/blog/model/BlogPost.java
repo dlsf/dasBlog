@@ -1,6 +1,7 @@
 package moe.das.blog.model;
 
 import moe.das.blog.App;
+import moe.das.blog.renderer.post.TagRenderer;
 import moe.das.blog.utils.Constants;
 import moe.das.blog.utils.Sanitizer;
 import org.commonmark.ext.front.matter.YamlFrontMatterVisitor;
@@ -12,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -24,17 +27,19 @@ public class BlogPost {
     private final String description;
     private final String author;
     private final String date;
+    private final List<String> tags;
+    private final String url;
     private final Node document;
     private final boolean excludeFromHome;
-    private final String url;
 
-    private BlogPost(String title, String path, String category, String description, String author, String date, Node document, boolean excludeFromHome) {
+    private BlogPost(String title, String path, String category, String description, String author, String date, List<String> tags, Node document, boolean excludeFromHome) {
         this.title = title;
         this.path = path;
         this.category = category;
         this.description = description;
         this.author = author;
         this.date = date;
+        this.tags = tags;
         this.document = document;
         this.excludeFromHome = excludeFromHome;
         this.url = Constants.BASE_BLOG_URL + path;
@@ -67,6 +72,7 @@ public class BlogPost {
         var author = metadata.get("author");
         var date = metadata.get("date");
         var description = metadata.get("description");
+        var tags = metadata.get("tags");
 
         if (title == null || title.size() != 1) {
             LoggerFactory.getLogger(App.class).error("Failed to process post " + path);
@@ -92,6 +98,10 @@ public class BlogPost {
             return Optional.empty();
         }
 
+        if (tags == null) {
+            tags = Collections.emptyList();
+        }
+
         var excludeFromHome = false;
         var exclusionMetadata = metadata.get("exclude-from-home");
         if (exclusionMetadata != null && !exclusionMetadata.isEmpty() && exclusionMetadata.getFirst().startsWith("true")) {
@@ -106,7 +116,7 @@ public class BlogPost {
             category = path.substring(0, path.lastIndexOf("/"));
         }
 
-        return Optional.of(new BlogPost(title.getFirst(), path, category, description.getFirst(), author.getFirst(), date.getFirst(), document, excludeFromHome));
+        return Optional.of(new BlogPost(title.getFirst(), path, category, description.getFirst(), author.getFirst(), date.getFirst(), tags, document, excludeFromHome));
     }
 
     /**
@@ -117,7 +127,10 @@ public class BlogPost {
      * @return the full HTML that represents this blog post
      */
     public String getHtml(String postTemplate, Renderer htmlRenderer) {
-        var htmlBody = htmlRenderer.render(document);
+        var bodyHtml = htmlRenderer.render(document);
+
+        var tagRenderer = new TagRenderer(tags);
+        var tagHtml = tagRenderer.toHtml();
 
         return postTemplate
                 .replace("%TITLE%", title)
@@ -125,7 +138,8 @@ public class BlogPost {
                 .replace("%DATE%", date)
                 .replace("%DESCRIPTION%", description)
                 .replace("%URL%", url)
-                .replace("%BODY_TEXT%", htmlBody);
+                .replace("%BODY_TEXT%", bodyHtml)
+                .replace("%TAGS%", tagHtml);
     }
 
     /**

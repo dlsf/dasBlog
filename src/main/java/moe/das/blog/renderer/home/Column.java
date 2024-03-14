@@ -1,4 +1,4 @@
-package moe.das.blog.home;
+package moe.das.blog.renderer.home;
 
 import java.util.ArrayList;
 import java.util.Collections;
