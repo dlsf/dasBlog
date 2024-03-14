@@ -4,7 +4,7 @@ import io.javalin.Javalin;
 import moe.das.blog.home.Column;
 import moe.das.blog.home.Table;
 import moe.das.blog.model.BlogPost;
-import moe.das.blog.rendering.HeadingAttributeProvider;
+import moe.das.blog.renderer.HeadingAttributeProvider;
 import moe.das.blog.utils.Constants;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
