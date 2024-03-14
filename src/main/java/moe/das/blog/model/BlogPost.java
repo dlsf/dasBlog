@@ -1,13 +1,11 @@
 package moe.das.blog.model;
 
 import moe.das.blog.App;
-import moe.das.blog.renderer.post.TagRenderer;
 import moe.das.blog.utils.Constants;
 import moe.das.blog.utils.Sanitizer;
 import org.commonmark.ext.front.matter.YamlFrontMatterVisitor;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
-import org.commonmark.renderer.Renderer;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
@@ -28,7 +26,6 @@ public class BlogPost {
     private final String author;
     private final String date;
     private final List<String> tags;
-    private final String url;
     private final Node document;
     private final boolean excludeFromHome;
 
@@ -42,7 +39,6 @@ public class BlogPost {
         this.tags = tags;
         this.document = document;
         this.excludeFromHome = excludeFromHome;
-        this.url = Constants.BASE_BLOG_URL + path;
     }
 
     /**
@@ -119,27 +115,33 @@ public class BlogPost {
         return Optional.of(new BlogPost(title.getFirst(), path, category, description.getFirst(), author.getFirst(), date.getFirst(), tags, document, excludeFromHome));
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
     /**
-     * Returns the full HTML page of this blog post based on a template.
+     * The parsed {@link Node} that represents the body of this blog post.
      *
-     * @param postTemplate the template that should be used to generate this blog post
-     * @param htmlRenderer the HTML renderer used to render the markdown of this blog post
-     * @return the full HTML that represents this blog post
+     * @return the Node for this blog post
      */
-    public String getHtml(String postTemplate, Renderer htmlRenderer) {
-        var bodyHtml = htmlRenderer.render(document);
-
-        var tagRenderer = new TagRenderer(tags);
-        var tagHtml = tagRenderer.toHtml();
-
-        return postTemplate
-                .replace("%TITLE%", title)
-                .replace("%AUTHOR%", author)
-                .replace("%DATE%", date)
-                .replace("%DESCRIPTION%", description)
-                .replace("%URL%", url)
-                .replace("%BODY_TEXT%", bodyHtml)
-                .replace("%TAGS%", tagHtml);
+    public Node getDocument() {
+        return document;
     }
 
     /**
@@ -152,7 +154,7 @@ public class BlogPost {
     }
 
     /**
-     * The category that this blog post belongs in. Might contain sub-categories
+     * The category that this blog post belongs in. Might contain sub-categories.
      *
      * @return the category
      */
@@ -168,6 +170,11 @@ public class BlogPost {
     public boolean excludeFromHome() {
         return excludeFromHome;
     }
+
+    public String getUrl() {
+        return Constants.BASE_BLOG_URL + path;
+    }
+
 
     /**
      * An HTML link tag with the absolute location of this post as a target and the post's title as a name.

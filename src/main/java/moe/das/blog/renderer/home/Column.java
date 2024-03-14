@@ -1,5 +1,7 @@
 package moe.das.blog.renderer.home;
 
+import moe.das.blog.renderer.HtmlRenderer;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * Represents an HTML column with its individual fields.
  */
-public class Column {
+public class Column implements HtmlRenderer {
     private final List<String> items;
 
     /**
@@ -28,13 +30,8 @@ public class Column {
         items.add(item);
     }
 
-    /**
-     * The full HTML column which this object represents.
-     *
-     * @return the HTML column
-     */
     @Override
-    public String toString() {
+    public String toHtml() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<tr>");
 
