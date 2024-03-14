@@ -1,6 +1,7 @@
 package moe.das.blog.model;
 
 import moe.das.blog.App;
+import moe.das.blog.utils.Constants;
 import moe.das.blog.utils.Sanitizer;
 import org.commonmark.ext.front.matter.YamlFrontMatterVisitor;
 import org.commonmark.node.Node;
@@ -36,7 +37,7 @@ public class BlogPost {
         this.date = date;
         this.document = document;
         this.excludeFromHome = excludeFromHome;
-        this.url = "https://blog.das.moe/" + path;
+        this.url = Constants.BASE_BLOG_URL + path;
     }
 
     /**
