@@ -3,7 +3,7 @@ package moe.das.blog.utils;
 /**
  * Utility class that sanitizes strings.
  */
-public class Sanitizer {
+public class SanitizerUtils {
     /**
      * Replaces certain characters in a string with others to prevent HTML and Markdown encoding issues.
      */

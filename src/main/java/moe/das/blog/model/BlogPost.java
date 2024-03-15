@@ -2,7 +2,7 @@ package moe.das.blog.model;
 
 import moe.das.blog.App;
 import moe.das.blog.utils.Constants;
-import moe.das.blog.utils.Sanitizer;
+import moe.das.blog.utils.SanitizerUtils;
 import org.commonmark.ext.front.matter.YamlFrontMatterVisitor;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
@@ -52,7 +52,7 @@ public class BlogPost {
         var fileName = file.toString().toLowerCase().replace("posts/", "");
         if (!fileName.endsWith(".md")) return Optional.empty();
 
-        var fullPath = Sanitizer.sanitizeString(fileName.replace(".md", ""));
+        var fullPath = SanitizerUtils.sanitizeString(fileName.replace(".md", ""));
         var pathParts = fullPath.split("/");
         var path = pathParts[pathParts.length - 1];
 

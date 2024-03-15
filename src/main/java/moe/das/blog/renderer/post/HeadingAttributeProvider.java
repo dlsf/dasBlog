@@ -1,6 +1,6 @@
 package moe.das.blog.renderer.post;
 
-import moe.das.blog.utils.Sanitizer;
+import moe.das.blog.utils.SanitizerUtils;
 import org.commonmark.node.Heading;
 import org.commonmark.node.Node;
 import org.commonmark.node.Text;
@@ -21,7 +21,7 @@ public class HeadingAttributeProvider implements AttributeProvider {
             }
 
             if (child instanceof Text text) {
-                attributes.put("id", Sanitizer.sanitizeString(text.getLiteral()));
+                attributes.put("id", SanitizerUtils.sanitizeString(text.getLiteral()));
             }
         }
     }
