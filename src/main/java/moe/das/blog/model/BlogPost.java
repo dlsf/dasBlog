@@ -66,42 +66,26 @@ public class BlogPost {
         // Get and validate post metadata
         var metadataVisitor = new YamlFrontMatterVisitor();
         document.accept(metadataVisitor);
-        var metadata = metadataVisitor.getData();
-        var title = metadata.get("title");
-        var category = metadata.get("category");
-        var author = metadata.get("author");
-        var date = metadata.get("date");
-        var description = metadata.get("description");
-        var tags = metadata.get("tags");
 
-        if (title == null || title.size() != 1) {
-            LoggerFactory.getLogger(App.class).error("Failed to process post " + fullPath);
-            LoggerFactory.getLogger(App.class).error("Title is invalid!");
+        var metadata = metadataVisitor.getData();
+
+        String title, author, date, description;
+        try {
+            title = metadata.get("title").getFirst();
+            author = metadata.get("author").getFirst();
+            date = metadata.get("date").getFirst();
+            description = metadata.get("description").getFirst();
+        } catch (NullPointerException | IndexOutOfBoundsException exception) {
+            LoggerFactory.getLogger(App.class).error("Failed to process post " + fullPath, exception);
             return Optional.empty();
         }
 
+        var category = metadata.get("category");
         if (category == null || category.size() != 1) {
             category = Collections.singletonList("general");
         }
 
-        if (author == null || author.size() != 1) {
-            LoggerFactory.getLogger(App.class).error("Failed to process post " + fullPath);
-            LoggerFactory.getLogger(App.class).error("Author is invalid!");
-            return Optional.empty();
-        }
-
-        if (date == null || date.size() != 1) {
-            LoggerFactory.getLogger(App.class).error("Failed to process post " + fullPath);
-            LoggerFactory.getLogger(App.class).error("Date is invalid!");
-            return Optional.empty();
-        }
-
-        if (description == null || description.size() != 1) {
-            LoggerFactory.getLogger(App.class).error("Failed to process post " + fullPath);
-            LoggerFactory.getLogger(App.class).error("Short description is invalid!");
-            return Optional.empty();
-        }
-
+        var tags = metadata.get("tags");
         if (tags == null) {
             tags = Collections.emptyList();
         }
@@ -112,7 +96,7 @@ public class BlogPost {
             excludeFromHome = true;
         }
 
-        return Optional.of(new BlogPost(title.getFirst(), path, category.getFirst(), description.getFirst(), author.getFirst(), date.getFirst(), tags, document, excludeFromHome));
+        return Optional.of(new BlogPost(title, path, category.getFirst(), description, author, date, tags, document, excludeFromHome));
     }
 
     public String getTitle() {
