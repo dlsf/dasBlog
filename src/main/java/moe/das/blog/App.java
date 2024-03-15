@@ -1,12 +1,13 @@
 package moe.das.blog;
 
 import io.javalin.Javalin;
+import moe.das.blog.model.BlogPost;
 import moe.das.blog.renderer.home.Column;
 import moe.das.blog.renderer.home.Table;
-import moe.das.blog.model.BlogPost;
 import moe.das.blog.renderer.post.BlogPostRenderer;
 import moe.das.blog.renderer.post.HeadingAttributeProvider;
 import moe.das.blog.utils.Constants;
+import moe.das.blog.utils.ResourceUtils;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
@@ -37,7 +38,7 @@ public class App {
 
         // Generate and serve the home screen
         var homeScreenBody = generateHomeScreen(blogPosts);
-        var homeTemplate = new String(getClass().getClassLoader().getResourceAsStream("home_template.html").readAllBytes());
+        var homeTemplate = ResourceUtils.getResourceAsString("home_template.html");
         javalin = javalin.get("/", ctx -> ctx.html(homeTemplate.replace("%BODY%", homeScreenBody)));
 
         // Start server
@@ -52,7 +53,7 @@ public class App {
      * @throws IOException only thrown during startup when files are missing
      */
     private List<BlogPost> initializePostPages(Javalin javalin) throws IOException {
-        var postTemplate = new String(getClass().getClassLoader().getResourceAsStream("post_template.html").readAllBytes());
+        var postTemplate = ResourceUtils.getResourceAsString("post_template.html");
         var markdownParser = Parser.builder().extensions(Constants.EXTENSIONS).build();
         var htmlRenderer = HtmlRenderer.builder()
                 .attributeProviderFactory(attributeProviderContext -> new HeadingAttributeProvider())
@@ -60,16 +61,18 @@ public class App {
                 .build();
 
         var paths = new ArrayList<BlogPost>();
-        for (var file : Files.walk(Path.of("posts/")).toList()) {
-            var postOptional = BlogPost.fromFile(file, markdownParser);
-            if (postOptional.isEmpty()) continue;
+        try (var files = Files.walk(Path.of("posts/"))) {
+            for (var file : files.toList()) {
+                var postOptional = BlogPost.fromFile(file, markdownParser);
+                if (postOptional.isEmpty()) continue;
 
-            var post = postOptional.get();
-            var postRenderer = new BlogPostRenderer(post, postTemplate, htmlRenderer);
-            var html = postRenderer.toHtml();
+                var post = postOptional.get();
+                var postRenderer = new BlogPostRenderer(post, postTemplate, htmlRenderer);
+                var html = postRenderer.toHtml();
 
-            javalin = javalin.get("/" + post.getPath(), ctx -> ctx.html(html));
-            paths.add(post);
+                javalin = javalin.get("/" + post.getPath(), ctx -> ctx.html(html));
+                paths.add(post);
+            }
         }
 
         return paths;
