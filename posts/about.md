@@ -1,6 +1,7 @@
 ---
 # Note that comments are not supported properly! Remove them before using this
 title: About This Site
+category: ""             # Used in the home screen
 description: ""          # Only used in embeds
 author: Daniel Scherf
 date: ""

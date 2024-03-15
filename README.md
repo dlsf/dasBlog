@@ -4,7 +4,7 @@ The source code of the [blog.das.moe](https://blog.das.moe) website. Designed to
 
 ## Usage
 
-Markdown files that should be published as posts need to be placed in the `posts/` directory and have to contain a specific YAML header. Sub-folders are being interpreted as categories.
+Markdown files that should be published as posts need to be placed in the `posts/` directory and need a specific YAML header. They are categorized via their `category` metadata, but additional folders can be used to structure them.
 
 Please refer to the example [about page](posts/about.md) for details.
 
