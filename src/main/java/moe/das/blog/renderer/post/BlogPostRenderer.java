@@ -38,7 +38,7 @@ public class BlogPostRenderer implements HtmlRenderer {
                 .replace("%DATE%", blogPost.getDate())
                 .replace("%DESCRIPTION%", blogPost.getDescription())
                 .replace("%URL%", blogPost.getUrl())
-                .replace("%BODY_TEXT%", bodyHtml)
+                .replace("%BODY%", bodyHtml)
                 .replace("%TAGS%", tagHtml);
     }
 }
