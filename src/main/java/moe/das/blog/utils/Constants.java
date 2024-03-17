@@ -17,7 +17,7 @@ public class Constants {
     /**
      * HTML displayed on the home screen when there are no other posts available.
      */
-    public static final String NO_POSTS_PLACEHOLDER = "<br><center><h3>No Available Pages!</h3></center>";
+    public static final String NO_POSTS_PLACEHOLDER = "<br><center><h3>No Available Posts!</h3></center>";
 
     /**
      * The URL to this blog.
