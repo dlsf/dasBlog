@@ -14,7 +14,7 @@ dependencies {
     implementation("io.javalin:javalin:6.1.3")
     implementation("org.commonmark:commonmark:0.22.0")
     implementation("org.commonmark:commonmark-ext-yaml-front-matter:0.22.0")
-    implementation("org.slf4j:slf4j-simple:2.0.12")
+    implementation("org.slf4j:slf4j-simple:2.0.13")
 }
 
 application {
