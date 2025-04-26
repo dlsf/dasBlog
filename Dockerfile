@@ -1,9 +1,9 @@
-FROM eclipse-temurin:21.0.6_7-jdk-jammy as build
+FROM eclipse-temurin:21.0.7_6-jdk-jammy as build
 
 COPY . .
 RUN ./gradlew installDist --no-daemon
 
-FROM eclipse-temurin:21.0.6_7-jdk-jammy as runtime
+FROM eclipse-temurin:21.0.7_6-jdk-jammy as runtime
 
 WORKDIR /app
 
