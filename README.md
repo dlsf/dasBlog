@@ -1,5 +1,8 @@
 # dasBlog
 
+> [!IMPORTANT]
+> [This repository has been moved to Codeberg](https://codeberg.org/das/dasBlog)
+
 The source code of the [blog.das.moe](https://blog.das.moe) website. Designed to be minimalistic, it serves mostly static Markdown files as slightly stylized HTML using [Javalin](https://github.com/javalin/javalin).
 
 ## Usage
