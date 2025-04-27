@@ -9,7 +9,7 @@ jobs:
       packages: write
     steps:
     - name: Publish image
-      uses: woodpeckerci/plugin-docker-buildx@latest
+      uses: codeberg.org/woodpecker-plugins/docker-buildx:latest
       with:
         platforms: linux/amd64
         repo: codeberg.org/${CI_REPO_OWNER}/dasBlog
