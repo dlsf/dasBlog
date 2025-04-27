@@ -16,5 +16,4 @@ jobs:
         registry: codeberg.org
         tags: latest
         username: ${CI_REPO_OWNER}
-        password:
-          from_secret: docker_token
+        password: ${{secrets.DOCKER_TOKEN}}
