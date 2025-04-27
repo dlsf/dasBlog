@@ -4,7 +4,8 @@ on:
 
 jobs:
   publish-image:
-    runs-on: codeberg-small
+    name: Publish Docker image
+    runs-on: docker
     permissions:
       packages: write
     steps:
