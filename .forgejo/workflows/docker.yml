@@ -9,7 +9,7 @@ jobs:
       packages: write
     steps:
     - name: Publish image
-      uses: docker/build-push-action
+      uses: docker/build-push-action@latest
       with:
         platforms: linux/amd64
         repo: codeberg.org/${CI_REPO_OWNER}/dasBlog
