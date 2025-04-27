@@ -1,0 +1,20 @@
+on:
+  push:
+    branches: [main]
+
+jobs:
+  publish-image:
+    runs-on: docker
+    permissions:
+      packages: write
+    steps:
+    - name: Publish image
+      uses: woodpeckerci/plugin-docker-buildx
+      with:
+        platforms: linux/amd64
+        repo: codeberg.org/${CI_REPO_OWNER}/dasBlog
+        registry: codeberg.org
+        tags: latest
+        username: ${CI_REPO_OWNER}
+        password:
+          from_secret: docker_token
