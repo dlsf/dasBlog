@@ -4,7 +4,7 @@ on:
 
 jobs:
   publish-image:
-    runs-on: docker
+    runs-on: codeberg-small
     permissions:
       packages: write
     steps:
