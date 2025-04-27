@@ -8,9 +8,10 @@ jobs:
     permissions:
       packages: write
     steps:
-    - uses: docker/setup-buildx-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
     - name: Publish image
-      uses: docker/build-push-action@v6
+      uses: docker/build-push-action@v5
       with:
         platforms: linux/amd64
         repo: codeberg.org/${CI_REPO_OWNER}/dasBlog
